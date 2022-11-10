@@ -39,13 +39,12 @@ def check_for_content(image_path, color_to_check) -> bool:
     """
     img = cv2.imread(image_path)
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    img_gray = cv2.bitwise_not(img_gray)
 
+    img_gray = cv2.bitwise_not(img_gray)
     ret, mask = cv2.threshold(img_gray, *color_to_check)
 
     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
-    contours = [np.squeeze(contour) for contour in contours if len(contour) > 2]
     if len(contours) > 0:
         return True
     else:
