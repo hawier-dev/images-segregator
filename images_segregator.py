@@ -37,6 +37,7 @@ def check_for_content(image_path, color_to_check) -> bool:
     :param color_to_check: This is a tuple of the lower and upper bounds of the color you want to check for
     :return: A boolean value.
     """
+
     img = cv2.imread(image_path)
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -89,19 +90,24 @@ def check_colors() -> list or tuple:
         sys.exit(0)
 
 
-color = check_colors()
-path = args.path
-empty_dir = os.path.join(args.path, "no_content")
-edge_dir = os.path.join(args.path, "content")
-files = [file for file in os.listdir(path)]
+def main():
+    color = check_colors()
+    path = args.path
+    empty_dir = os.path.join(args.path, "no_content")
+    edge_dir = os.path.join(args.path, "content")
+    files = [file for file in os.listdir(path)]
 
-os.makedirs(empty_dir, exist_ok=True)
-os.makedirs(edge_dir, exist_ok=True)
+    os.makedirs(empty_dir, exist_ok=True)
+    os.makedirs(edge_dir, exist_ok=True)
 
-for file in files:
-    if check_image_file(file):
-        image = os.path.join(path, file)
-        if check_for_content(image, color):
-            move_file(image, edge_dir)
-        else:
-            move_file(image, empty_dir)
+    for file in files:
+        if check_image_file(file):
+            image = os.path.join(path, file)
+            if check_for_content(image, color):
+                move_file(image, edge_dir)
+            else:
+                move_file(image, empty_dir)
+
+
+if __name__ == "__main__":
+    main()
