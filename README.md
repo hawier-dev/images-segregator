@@ -1,6 +1,6 @@
 # Script to sort photos in a directory based on whether they have any content
 
-[PROJECT PAGE](https://hawier.dev/scripts/images_segregator.html)
+[PROJECT PAGE](https://hawier.dev/projects/image_manipulation/images_segregator.html)
 
 The script allows you to segregate photos in a folder based on whether there is any content in the photo.
 
