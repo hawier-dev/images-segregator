@@ -4,12 +4,24 @@ import sys
 from os.path import basename
 
 import cv2
-import numpy as np
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--path", type=str, required=True)
-parser.add_argument("-b", "--black", action="store_true")
-parser.add_argument("-w", "--white", action="store_true")
+parser = argparse.ArgumentParser(
+    "This script moves images that contain content to one directory and images that do not "
+    "contain content to another directory"
+)
+parser.add_argument(
+    "-p",
+    "--path",
+    type=str,
+    required=True,
+    help="The path to the directory containing the images",
+)
+parser.add_argument(
+    "-b", "--black", action="store_true", help="Background color is black"
+)
+parser.add_argument(
+    "-w", "--white", action="store_true", help="Background color is white"
+)
 args = parser.parse_args()
 
 
